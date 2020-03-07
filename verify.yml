@@ -1,0 +1,11 @@
+---
+    - hosts: localhost
+      connection: local
+      become: true
+      tasks:
+        - name: Validate Docker Container
+          uri:
+            url: http://localhost:5000/#/search
+            return_content: yes
+          register: this
+          failed_when: "'ion-nav-view' not in this.content"

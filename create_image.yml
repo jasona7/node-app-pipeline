@@ -1,0 +1,13 @@
+---
+    - hosts: localhost
+      become: true
+      vars:
+        create_containers: 4
+        default_container_name: docker-container
+        default_container_image: node:4.4.3-slim
+        default_container_command: sleep 1d
+      tasks:
+        - name: Build Custom Docker image
+          docker_image:
+            path: /home/ec2-user/projects/pcmatic/employees/directory-ionic-nodejs
+            name: employees-app
